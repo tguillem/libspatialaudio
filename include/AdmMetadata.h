@@ -203,6 +203,7 @@ namespace admrender {
 		// The track index of the object (starting from 0)
 		unsigned int trackInd = 0;
 		// audioPackFormatID
+		// TODO One one is used by a track
 		std::vector<std::string> audioPackFormatID;
 		// Channel frequency information
 		Frequency channelFrequency;
