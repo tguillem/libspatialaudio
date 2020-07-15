@@ -13,6 +13,7 @@
 /*############################################################################*/
 
 #include "AdmPointSourcePanner.h"
+#include<cmath>
 #include<string>
 #include <map>
 
