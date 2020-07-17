@@ -158,6 +158,8 @@ namespace admrender {
 		// A buffer of zeros to use to clear the HOA buffer
 		m_pZeros = std::make_unique<float[]>(nSamples);
 		memset(m_pZeros.get(), 0, m_nSamples * sizeof(float));
+
+		return true;
 	}
 
 
