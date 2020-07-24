@@ -184,7 +184,7 @@ namespace admrender {
 	{
 		if (metadata.cartesian)
 		{
-			std::cerr << "AdmRender Warning: Cartesian flag not implemented. Position will be converted to polar." << std::endl;
+			//std::cerr << "AdmRender Warning: Cartesian flag not implemented. Position will be converted to polar." << std::endl;
 			// convert from cartesian to polar coordinates
 			metadata.polarPosition = CartesianToPolar(metadata.cartesianPosition);
 			metadata.cartesian = false;
