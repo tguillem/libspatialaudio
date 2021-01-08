@@ -37,7 +37,7 @@ namespace admrender {
 			if (metadata.channelFrequency.lowPass[0] <= 200.)
 				return true;
 
-		std::string nominalLabel = GetNominalSpeakerLabel(metadata.speakerLabel);
+		std::string nominalLabel = GetNominalSpeakerLabel(metadata);
 		if (nominalLabel == std::string("LFE1") ||
 			nominalLabel == std::string("LFE2"))
 		{
@@ -126,8 +126,7 @@ namespace admrender {
 
 		// is the current channel an LFE
 		bool isLfeChannel = isLFE(metadata);
-
-		std::string nominalSpeakerLabel = GetNominalSpeakerLabel(metadata.speakerLabel);
+		std::string speakerLabel = GetNominalSpeakerLabel(metadata);
 
 		if (metadata.audioPackFormatID.size() > 0)
 		{
@@ -138,7 +137,7 @@ namespace admrender {
 
 				for (const MappingRule& rule : mappingRules)
 				{
-					if (MappingRuleApplies(rule, layoutName, nominalSpeakerLabel, m_layout))
+					if (MappingRuleApplies(rule, layoutName, speakerLabel, m_layout))
 					{
 						for (auto& gain : rule.gains) {
 							int idx = m_layout.getMatchingChannelIndex(gain.first);
@@ -152,7 +151,6 @@ namespace admrender {
 		}
 
 		// Check if there are any speakers with the same label and LFE type
-		std::string speakerLabel = GetNominalSpeakerLabel(metadata.speakerLabel);
 		int idx = m_layout.getMatchingChannelIndex(speakerLabel);
 		if (idx >= 0 && (m_layout.channels[idx].isLFE == isLfeChannel))
 		{

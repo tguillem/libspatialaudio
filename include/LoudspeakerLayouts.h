@@ -21,6 +21,7 @@
 #include <sstream>
 #include "Coordinates.h"
 #include "ScreenCommon.h"
+#include "AdmMetadata.h"
 
 // Information about a speaker channel (as opposed to an audio channel, which could be Object, HOA, etc.)
 struct Channel
@@ -80,9 +81,25 @@ private:
 	If the the speaker label is in the format "urn:itu:bs:2051:[0-9]:speaker:X+YYY then
 	return the X+YYY portion. Otherwise, returns the original input
 */
-static inline std::string GetNominalSpeakerLabel(const std::string& label)
+static inline std::string GetNominalSpeakerLabel(admrender::DirectSpeakerMetadata &metadata)
 {
-	std::string speakerLabel = label;
+	std::string speakerLabel = "";
+	if (!metadata.speakerLabel.empty())
+		speakerLabel = metadata.speakerLabel;
+	else if (metadata.audioPackFormatID.size() > 0)
+	{
+		auto packChannelsIter = admrender::ituPackChannels.find(metadata.audioPackFormatID[0]);
+		if (packChannelsIter != admrender::ituPackChannels.end())
+		{
+			auto packChannels = packChannelsIter->second;
+
+			if (metadata.trackInd < packChannels.size())
+				speakerLabel = packChannels[metadata.speakerInd];
+		}
+	}
+
+	if (speakerLabel.empty())
+		return speakerLabel;
 
 	std::stringstream ss(speakerLabel);
 	std::string token;

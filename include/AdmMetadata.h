@@ -240,8 +240,10 @@ namespace admrender {
 	// See See Rec. ITU-R BS.2127-0 page 63.
 	struct DirectSpeakerMetadata
 	{
-		// The speaker labels from the stream metadata
+		// The speaker labels from the stream metadata. If empty, use speakerInd
 		std::string speakerLabel = {};
+		// The speaker index from ituPackChannels
+		unsigned speakerInd;
 		// The position of the loudspeaker
 		DirectSpeakerPolarPosition polarPosition;
 		// The track index (starting from 0)
