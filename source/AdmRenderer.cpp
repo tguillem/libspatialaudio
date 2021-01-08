@@ -294,7 +294,7 @@ namespace admrender {
 		{
 			PolarPoint newPos;
 			// Get the speaker position based on the nominal speaker direction
-			auto spkPosIt = bs2094Positions.find(GetNominalSpeakerLabel(metadata.speakerLabel));
+			auto spkPosIt = bs2094Positions.find(GetNominalSpeakerLabel(metadata));
 			if (spkPosIt != bs2094Positions.end())
 			{
 				newPos.fAzimuth = DegreesToRadians((float)spkPosIt->second.azimuth);
