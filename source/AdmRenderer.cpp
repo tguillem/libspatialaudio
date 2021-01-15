@@ -219,7 +219,7 @@ namespace admrender {
 		toPolar(metadata);
 
 		// Map from the track index to the corresponding panner index
-		int nObjectInd = GetMatchingIndex(m_pannerTrackInd, metadata.trackInd, TypeDefinition::Objects);
+		int nObjectInd = GetMatchingIndex(m_pannerTrackInd, metadata.objectInd, TypeDefinition::Objects);
 
 		if (nObjectInd == -1) // this track was not declared at construction. Stopping here.
 		{
@@ -308,7 +308,7 @@ namespace admrender {
 				newPos.fElevation = DegreesToRadians((float)metadata.polarPosition.elevation);
 				newPos.fDistance = (float)metadata.polarPosition.distance;
 			}
-			int nDirectSpeakerInd = GetMatchingIndex(m_pannerTrackInd, metadata.trackInd, TypeDefinition::DirectSpeakers);
+			int nDirectSpeakerInd = GetMatchingIndex(m_pannerTrackInd, metadata.objectInd, TypeDefinition::DirectSpeakers);
 			m_hoaEncoders[nDirectSpeakerInd][0].SetPosition(newPos);
 			// Encode the audio and add it to the buffer for output
 			m_hoaEncoders[nDirectSpeakerInd][0].ProcessAccumul(pDirSpkIn, nSamples, &m_hoaAudioOut, nOffset);

@@ -196,8 +196,8 @@ namespace admrender {
 		double depth = 0.0;
 		// Jump position to determine how the gains are interpolated
 		JumpPosition jumpPosition;
-		// The track index of the object (starting from 0)
-		unsigned int trackInd = 0;
+		// The object index used by the track (starting from 0)
+		unsigned int objectInd = 0;
 		std::vector<PolarExclusionZone> zoneExclusionPolar;
 		// Screen reference for screen scaling
 		bool screenRef = false;
@@ -215,7 +215,7 @@ namespace admrender {
 			&& lhs.channelLock == rhs.channelLock && lhs.objectDivergence == rhs.objectDivergence
 			&& lhs.width == rhs.width && lhs.height == rhs.height && lhs.depth == rhs.depth
 			&& lhs.cartesian == rhs.cartesian && lhs.jumpPosition == rhs.jumpPosition
-			&& lhs.trackInd == rhs.trackInd && lhs.zoneExclusionPolar == rhs.zoneExclusionPolar
+			&& lhs.objectInd == rhs.objectInd && lhs.zoneExclusionPolar == rhs.zoneExclusionPolar
 			&& lhs.screenEdgeLock == rhs.screenEdgeLock && lhs.screenRef == rhs.screenRef
 			&& lhs.blockLength == rhs.blockLength;
 	}
@@ -244,8 +244,10 @@ namespace admrender {
 		std::string speakerLabel = {};
 		// The position of the loudspeaker
 		DirectSpeakerPolarPosition polarPosition;
-		// The track index of the object (starting from 0)
+		// The track index (starting from 0)
 		unsigned int trackInd = 0;
+		// The object index used by the track (starting from 0)
+		unsigned int objectInd = 0;
 		// audioPackFormatID
 		std::vector<std::string> audioPackFormatID;
 		// Channel frequency information
@@ -256,7 +258,8 @@ namespace admrender {
 	inline bool operator==(const DirectSpeakerMetadata& lhs, const DirectSpeakerMetadata& rhs)
 	{
 		return lhs.speakerLabel == rhs.speakerLabel && lhs.polarPosition == rhs.polarPosition
-			&& lhs.trackInd == rhs.trackInd && lhs.audioPackFormatID == rhs.audioPackFormatID
+			&& lhs.trackInd == rhs.trackInd && lhs.objectInd == rhs.objectInd
+			&& lhs.audioPackFormatID == rhs.audioPackFormatID
 			&& lhs.channelFrequency == rhs.channelFrequency;
 	}
 
